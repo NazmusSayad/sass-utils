@@ -1,0 +1,13 @@
+@mixin color($clr, $var) {
+  $red: color.red($clr);
+  $green: color.green($clr);
+  $blue: color.blue($clr);
+  --#{$var}: #{$red, $green, $blue};
+}
+
+@function color($var, $opacity: false) {
+  @if ($opacity == false) {
+    @return string.unquote('rgb(var(--#{$var}))');
+  }
+  @return string.unquote('rgba(var(--#{$var}), #{$opacity})');
+}
